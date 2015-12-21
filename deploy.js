@@ -9,18 +9,13 @@ function once(fn) {
   }
 }
 
-module.exports = function (message, done) {
-  var options = ['deploy']
-  if (message && message !== '') {
-    options.push('-m ' + message + '');
-  }
-
+module.exports = function (command, message, done) {
   done = once(done);
-  var proc = spawn('hexo', options, {detached: true});
+  var proc = spawn(command, [message], {detached: true});
   var stdout = '';
   var stderr = '';
-  proc.stdout.on('data', function(data){ stdout += data.toString() });
-  proc.stderr.on('data', function(data){ stderr += data.toString() });
+  proc.stdout.on('data', function(data){stdout += data.toString()})
+  proc.stderr.on('data', function(data){stderr += data.toString()})
   proc.on('error', function(err) {
     done(err, {stdout: stdout, stderr: stderr});
   });
@@ -28,3 +23,4 @@ module.exports = function (message, done) {
     done(null, {stdout: stdout, stderr: stderr});
   });
 }
+

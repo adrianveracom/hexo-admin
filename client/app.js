@@ -12,9 +12,7 @@ var App = React.createClass({
           <li><Link to="posts">Posts</Link></li>
           <li><Link to="pages">Pages</Link></li>
           <li><Link to="about">About</Link></li>
-        </ul>
-        <ul className="app_nav pull-right">
-          <li><Link to="deploy"><i className="fa fa-refresh"></i> Sync</Link></li>
+          <li><Link to="deploy">Deploy</Link></li>
         </ul>
       </div>
       <div className="app_main">
@@ -25,3 +23,4 @@ var App = React.createClass({
 })
 
 module.exports = App
+

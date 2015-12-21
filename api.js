@@ -4,7 +4,6 @@ var updateAny = require('./update')
   , updatePage = updateAny.bind(null, 'Page')
   , update = updateAny.bind(null, 'Post')
   , deploy = require('./deploy')
-  , generate = require('./generate')
 
 module.exports = function (app, hexo) {
 
@@ -257,30 +256,21 @@ module.exports = function (app, hexo) {
     })
   });
 
-  use('generate', function(req, res, next) {
-    if (req.method !== 'POST') return next()
-    try {
-      generate(function(err, result) {
-        if (err) {
-          return res.done({error: err.message || err})
-        }
-        res.done(result);
-      });
-    } catch (e) {
-      res.done({error: e.message})
-    }
-  });
-
   use('deploy', function(req, res, next) {
     if (req.method !== 'POST') return next()
+    if (!hexo.config.admin || !hexo.config.admin.deployCommand) {
+      return res.done({error: 'Config value "admin.deployCommand" not found'});
+    }
     try {
-      deploy(req.body.message, function(err, result) {
+      deploy(hexo.config.admin.deployCommand, req.body.message, function(err, result) {
+        console.log('res', err, result);
         if (err) {
           return res.done({error: err.message || err})
         }
         res.done(result);
       });
     } catch (e) {
+      console.log('EEE', e);
       res.done({error: e.message})
     }
   });
