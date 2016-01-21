@@ -1,6 +1,7 @@
-
 var Link = require('react-router').Link
-var React = require('react')
+var React = require('react');
+var Preview = require('./preview');
+var Publish = require('./publish');
 
 var App = React.createClass({
   render: function () {
@@ -11,10 +12,10 @@ var App = React.createClass({
         <ul className="app_nav">
           <li><Link to="posts">Posts</Link></li>
           <li><Link to="pages">Pages</Link></li>
-          <li><Link to="about">About</Link></li>
         </ul>
         <ul className="app_nav pull-right">
-          <li><Link to="deploy"><i className="fa fa-refresh"></i> Sync</Link></li>
+          <li><Preview /></li>
+          <li><Publish /></li>
         </ul>
       </div>
       <div className="app_main">

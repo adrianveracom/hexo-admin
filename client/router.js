@@ -4,8 +4,8 @@ var Post = require('./post')
 var Posts = require('./posts')
 var Page = require('./page')
 var Pages = require('./pages')
-var About = require('./about')
-var Deploy = require('./deploy')
+var Preview = require('./preview')
+var Publish = require('./publish')
 var Route = require('react-router').Route
 
 module.exports = () => {
@@ -14,8 +14,7 @@ module.exports = () => {
     <Route name="post" handler={Post} path="/posts/:postId"/>
     <Route name="page" handler={Page} path="/pages/:pageId"/>
     <Route name="pages" handler={Pages} path="/pages"/>
-    <Route name="about" handler={About}/>
-    <Route name="deploy" handler={Deploy}/>
+    <Route name="preview" handler={Preview}/>
+    <Route name="publish" handler={Publish}/>
   </Route>
 }
-
