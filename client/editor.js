@@ -47,10 +47,10 @@ var Editor = React.createClass({
           onChange={this.props.onChange}/>}
         {!this.props.isPage && (this.props.isDraft ?
           <button className="editor_publish" onClick={this.props.onPublish}>
-            Publish
+            Make it public
           </button> :
           <button className="editor_unpublish" onClick={this.props.onUnpublish}>
-            Unpublish
+            Move to draft
           </button>)}
       </div>
       <div className="editor_main">
